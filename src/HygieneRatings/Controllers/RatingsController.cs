@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HygieneRatings.Controllers
 {
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class RatingsController : Controller
     {
         private readonly IRatingsService _ratingsService;
@@ -17,13 +18,18 @@ namespace HygieneRatings.Controllers
             _ratingsService = ratingsService;
         }
 
-        // GET api/values
-        [HttpGet]
+        /// <remarks>Returns all matching businesses for specified name and location</remarks>
+        /// <response code="200">Returns the ratings</response>
+        /// <response code="404">No ratings were found for the specified name and co-ordinates</response>
+        /// <response code="500">Unexpected error</response>
+        /// <returns>A list of rating objects</returns>
+        [HttpGet("")]
+        [ProducesResponseType(typeof(IEnumerable<RatingsVm>), 200)]
         public async Task<IActionResult> Get(string name, decimal lat, decimal lng)
         {
             var results = await _ratingsService.GetRatings(name, lat, lng);
 
-            if (results == null)
+            if (results == null || !results.Establishments.Any())
             {
                 return NotFound();
             }

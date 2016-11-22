@@ -19,9 +19,7 @@ namespace HygieneRatings.Services
 
                 var response = await client.GetAsync($"?address={postCode}");
 
-                return !response.IsSuccessStatusCode
-                    ? null
-                    : JsonConvert.DeserializeObject<GeolocationResults>(await response.Content.ReadAsStringAsync());
+                return JsonConvert.DeserializeObject<GeolocationResults>(await response.Content.ReadAsStringAsync());
             }
         }
     }

@@ -9,11 +9,6 @@ namespace HygieneRatings.Services
 {
     public class RatingsService : IRatingsService
     {
-        public RatingsService()
-        {
-
-        }
-
         public async Task<RatingsEstablishments> GetRatings(string name, decimal latitude, decimal longitude)
         {
             using (var client = new HttpClient())
@@ -25,9 +20,7 @@ namespace HygieneRatings.Services
 
                 var response = await client.GetAsync($"?name={name}&longitude={longitude}&latitude={latitude}&maxDistanceLimit=10");
 
-                return !response.IsSuccessStatusCode
-                    ? null
-                    : JsonConvert.DeserializeObject<RatingsEstablishments>(await response.Content.ReadAsStringAsync());
+                return JsonConvert.DeserializeObject<RatingsEstablishments>(await response.Content.ReadAsStringAsync());
             }
         }
     }

@@ -23,7 +23,7 @@ namespace HygieneRatings.Controllers
         /// <response code="404">The specified post code was not found</response>
         /// <response code="500">Unexpected error</response>
         /// <returns>A geolocatrion object</returns>
-        [HttpGet("")]
+        [HttpGet("{postCode}")]
         [ProducesResponseType(typeof(GeolocationVm), 200)]
         public async Task<IActionResult> Get(string postCode)
         {

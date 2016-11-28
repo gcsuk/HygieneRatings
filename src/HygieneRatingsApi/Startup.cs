@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using HygieneRatings.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,23 +37,29 @@ namespace HygieneRatingsApi
             services.AddTransient<IGeolocationService, GeolocationService>();
             services.AddTransient<IRatingsService, RatingsService>();
 
-            var pathToDoc = _env.IsDevelopment()
+            try
+            {
+                var pathToDoc = _env.IsDevelopment()
                 ? Path.Combine(_env.ContentRootPath, @"bin\Debug\netcoreapp1.0\", Configuration["Swagger:Path"])
                 : Path.Combine(_env.ContentRootPath, Configuration["Swagger:Path"]);
 
-            services.AddSwaggerGen();
-            services.ConfigureSwaggerGen(options =>
-            {
-                options.SingleApiVersion(new Info
+                services.AddSwaggerGen();
+                services.ConfigureSwaggerGen(options =>
                 {
-                    Version = "v1",
-                    Title = "Hygiene Ratings API",
-                    Description = "An API to simplify the food standards agency data feed",
-                    TermsOfService = "None"
+                    options.SingleApiVersion(new Info
+                    {
+                        Version = "v1",
+                        Title = "Hygiene Ratings API",
+                        Description = "An API to simplify the food standards agency data feed",
+                        TermsOfService = "None"
+                    });
+                    options.IncludeXmlComments(pathToDoc);
+                    options.DescribeAllEnumsAsStrings();
                 });
-                options.IncludeXmlComments(pathToDoc);
-                options.DescribeAllEnumsAsStrings();
-            });
+            }
+            catch
+            {
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

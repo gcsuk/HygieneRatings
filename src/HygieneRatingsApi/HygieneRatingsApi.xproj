@@ -6,8 +6,8 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>37b2c203-36cf-4d5d-8bdb-ade693f62ac5</ProjectGuid>
-    <RootNamespace>HygieneRatings</RootNamespace>
+    <ProjectGuid>9583bb10-1dbc-4d2d-bede-44d05ce7ba8f</ProjectGuid>
+    <RootNamespace>HygieneRatingsApi</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>

@@ -25,7 +25,7 @@ namespace HygieneRatings.Controllers
         /// <response code="404">No ratings were found for the specified name and co-ordinates</response>
         /// <response code="500">Unexpected error</response>
         /// <returns>A list of rating objects</returns>
-        [HttpGet("{name}/{postCode}")]
+        [HttpGet("{name}/{address}")]
         [ProducesResponseType(typeof(IEnumerable<RatingsVm>), 200)]
         public async Task<IActionResult> Get(string name, string address)
         {

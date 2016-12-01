@@ -2,7 +2,7 @@
 {
     public class GeolocationVm
     {
-        public string PostCode { get; set; }
+        public string Address { get; set; }
         public decimal Longitude { get; set; }
         public decimal Latitude { get; set; }
     }

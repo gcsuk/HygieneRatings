@@ -27,9 +27,9 @@ namespace HygieneRatings.Controllers
         /// <returns>A list of rating objects</returns>
         [HttpGet("{name}/{postCode}")]
         [ProducesResponseType(typeof(IEnumerable<RatingsVm>), 200)]
-        public async Task<IActionResult> Get(string name, string postCode)
+        public async Task<IActionResult> Get(string name, string address)
         {
-            var geolocationResults = await _geolocationService.GetCoordinates(postCode);
+            var geolocationResults = await _geolocationService.GetCoordinates(address);
 
             if (geolocationResults == null || !geolocationResults.Results.Any())
             {

@@ -9,7 +9,7 @@ namespace HygieneRatings.Services
 {
     public class GeolocationService : IGeolocationService
     {
-        public async Task<GeolocationResults> GetCoordinates(string postCode)
+        public async Task<GeolocationResults> GetCoordinates(string address)
         {
             using (var client = new HttpClient())
             {
@@ -17,7 +17,7 @@ namespace HygieneRatings.Services
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = await client.GetAsync($"?address={postCode}");
+                var response = await client.GetAsync($"?address={address}");
 
                 return JsonConvert.DeserializeObject<GeolocationResults>(await response.Content.ReadAsStringAsync());
             }

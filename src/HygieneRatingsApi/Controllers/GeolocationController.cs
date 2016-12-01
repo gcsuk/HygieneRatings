@@ -23,13 +23,13 @@ namespace HygieneRatings.Controllers
         /// <response code="404">The specified post code was not found</response>
         /// <response code="500">Unexpected error</response>
         /// <returns>A geolocatrion object</returns>
-        [HttpGet("{postCode}")]
+        [HttpGet("{address}")]
         [ProducesResponseType(typeof(GeolocationVm), 200)]
-        public async Task<IActionResult> Get(string postCode)
+        public async Task<IActionResult> Get(string address)
         {
             try
             {
-                var results = await _geolocationService.GetCoordinates(postCode.Replace(" ", "").ToUpper());
+                var results = await _geolocationService.GetCoordinates(address);
 
                 if (results == null || !results.Results.Any())
                 {
@@ -38,7 +38,7 @@ namespace HygieneRatings.Controllers
 
                 return Ok(new GeolocationVm
                 {
-                    PostCode = postCode,
+                    Address = address,
                     Latitude = results.Results.FirstOrDefault().Geometry.Location.Latitude,
                     Longitude = results.Results.FirstOrDefault().Geometry.Location.Longitude
                 });

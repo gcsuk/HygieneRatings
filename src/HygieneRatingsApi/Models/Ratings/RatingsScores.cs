@@ -2,8 +2,8 @@
 {
     public class RatingsScores
     {
-        public int? Hygiene { get; set; }
-        public int? Structural { get; set; }
-        public int? ConfidenceInManagement { get; set; }
+        public string Hygiene { get; set; }
+        public string Structural { get; set; }
+        public string ConfidenceInManagement { get; set; }
     }
 }

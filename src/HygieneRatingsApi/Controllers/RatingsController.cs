@@ -33,7 +33,7 @@ namespace HygieneRatings.Controllers
 
             if (geolocationResults == null || !geolocationResults.Results.Any())
             {
-                return NotFound();
+                return NotFound("Location");
             }
 
             var geolocation = geolocationResults.Results.First().Geometry.Location;
@@ -42,7 +42,7 @@ namespace HygieneRatings.Controllers
 
             if (results == null || !results.Establishments.Any())
             {
-                return NotFound();
+                return NotFound("Establishment");
             }
 
             return
@@ -55,7 +55,10 @@ namespace HygieneRatings.Controllers
                                 BusinessPostCode = e.PostCode,
                                 Rating = e.RatingValue,
                                 RatingDate = e.RatingDate,
-                                RatingKey = e.RatingKey
+                                RatingKey = e.RatingKey,
+                                HygieneScore = e.Scores?.Hygiene,
+                                StructuralScore = e.Scores?.Structural,
+                                ManagementScore = e.Scores?.ConfidenceInManagement
                             })));
         }
 

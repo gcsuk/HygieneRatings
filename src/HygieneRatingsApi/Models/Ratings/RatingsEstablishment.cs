@@ -1,4 +1,5 @@
 ﻿using System;
+using HygieneRatingsApi.Models.Ratings;
 
 namespace HygieneRatings.Models.Ratings
 {
@@ -9,5 +10,6 @@ namespace HygieneRatings.Models.Ratings
         public int RatingValue { get; set; }
         public string RatingKey { get; set; }
         public DateTime RatingDate { get; set; }
+        public RatingsScores Scores { get; set; }
     }
 }

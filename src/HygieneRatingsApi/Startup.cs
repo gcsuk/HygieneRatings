@@ -70,6 +70,8 @@ namespace HygieneRatingsApi
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
+            app.UseCors(c => c.AllowAnyOrigin());
+
             app.UseStaticFiles();
             app.UseMvc();
 

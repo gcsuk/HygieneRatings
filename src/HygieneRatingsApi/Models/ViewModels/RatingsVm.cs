@@ -9,5 +9,8 @@ namespace HygieneRatings.Models.ViewModels
         public int Rating { get; set; }
         public DateTime RatingDate { get; set; }
         public string RatingKey { get; set; }
+        public int? HygieneScore { get; set; }
+        public int? StructuralScore { get; set; }
+        public int? ManagementScore { get; set; }
     }
 }
